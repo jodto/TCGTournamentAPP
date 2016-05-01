@@ -1,11 +1,12 @@
 package com.factory.rimon.tcgtournamentapp.BE;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by rimon on 4/29/2016.
  */
-public class Tournament {
+public class Tournament implements Serializable{
 
     String name;
     String date;
