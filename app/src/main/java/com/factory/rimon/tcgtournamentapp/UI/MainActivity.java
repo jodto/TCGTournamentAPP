@@ -1,6 +1,5 @@
 package com.factory.rimon.tcgtournamentapp.UI;
 
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,12 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.factory.rimon.tcgtournamentapp.BE.Tournament;
+import com.factory.rimon.tcgtournamentapp.BE.BETournament;
 import com.factory.rimon.tcgtournamentapp.DAL.TournamentRepository;
 import com.factory.rimon.tcgtournamentapp.R;
 
@@ -28,8 +26,9 @@ public class MainActivity extends AppCompatActivity {
     TextView txtDate;
     TextView txtFormat;
     TextView txtEdition;
-    ArrayList<Tournament> tournaments;
-    ArrayList<Tournament> testList;
+    ListView lvTournaments;
+    ArrayList<BETournament> tournaments;
+    ArrayList<BETournament> testList;
     TournamentRepository tr;
     TournamentAdapter ta;
 
@@ -38,12 +37,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        ListView listView = (ListView) findViewById(R.id.listView);
+        lvTournaments = (ListView) findViewById(R.id.listView);
 
         testList = new ArrayList<>();
 
-        Tournament t1 = new Tournament("Name", "dATE", "FORMAT", "EDITION");
-        Tournament t2 = new Tournament("Name1", "dATE", "FORMAT", "EDITION");
+        BETournament t1 = new BETournament("Name", "dATE", "FORMAT", "EDITION");
+        BETournament t2 = new BETournament("Name1", "dATE", "FORMAT", "EDITION");
         testList.add(t1);
         testList.add(t2);
         Log.d("TEST", "" + testList.size());
@@ -55,12 +54,12 @@ public class MainActivity extends AppCompatActivity {
         ta = new TournamentAdapter(this);
         ta.addAll(testList);
 
-        listView.setAdapter(ta);
+        lvTournaments.setAdapter(ta);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvTournaments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Tournament tournament = ta.getItem(position);
+                BETournament tournament = ta.getItem(position);
 
                 Intent intent = new Intent(getApplicationContext(), TournamentDetails.class);
 
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private class TournamentAdapter extends ArrayAdapter<Tournament> {
+    private class TournamentAdapter extends ArrayAdapter<BETournament> {
 
         public TournamentAdapter(Context context) {
             super(context, R.layout.activity_row);
@@ -89,22 +88,32 @@ public class MainActivity extends AppCompatActivity {
                 txtFormat = (TextView) v.findViewById(R.id.txtFormat);
             }
 
-            Tournament t = getItem(pos);
-
-
-                txtName.setText("" + t.getName());
+            BETournament t = getItem(pos);
+                txtName.setText("" + t.getTitle());
                 txtDate.setText("" + t.getDate());
                 txtFormat.setText("" + t.getFormat());
                 txtName.setText("" + t.getEdition());
-
             return v;
-
         }
     }
 
+    /*public void initializeData(final ArrayList<BETournament> s)
+    {
+        //ta = TournamentAdapter(s);
+        //lvTournaments.setAdapter(ta);
 
+        Log.d(TAG, "Adapter attached");
 
+        lvTournaments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                BETournament m_s = s.get(position);
 
+                String msg = m_s.getTitle();
 
-
+                Toast.makeText(getApplicationContext(),
+                        msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }*/
 }

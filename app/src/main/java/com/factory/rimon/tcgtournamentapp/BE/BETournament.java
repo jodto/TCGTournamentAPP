@@ -6,9 +6,9 @@ import java.util.ArrayList;
 /**
  * Created by rimon on 4/29/2016.
  */
-public class Tournament implements Serializable{
+public class BETournament implements Serializable{
 
-    String name;
+    String title;
     String date;
     String format;
     String edition;
@@ -18,13 +18,13 @@ public class Tournament implements Serializable{
     String startTime;
     String price;
     String info;
-    ArrayList<Player> players;
+    ArrayList<BEPlayer> players;
     Boolean active;
 
-    public Tournament(String name,
-            String date,
-            String format,
-            String edition/*,
+    public BETournament(String title,
+                        String date,
+                        String format,
+                        String edition/*,
             String rel,
             String location,
             String entryTime,
@@ -34,7 +34,7 @@ public class Tournament implements Serializable{
             ArrayList<Player> players,
             Boolean active*/)
     {
-        this.name = name;
+        this.title = title;
         this.date = date;
         this.format = format;
         this.edition = edition;
@@ -49,8 +49,8 @@ public class Tournament implements Serializable{
     }
 
 
-    public String getName(){
-        return name;
+    public String getTitle(){
+        return title;
     }
 
     public String getDate(){
@@ -65,9 +65,9 @@ public class Tournament implements Serializable{
         return format;
     }
 
-    public void setName(String name)
+    public void setTitle(String title)
     {
-        this.name = name;
+        this.title = title;
     }
 
     public void setDate(String date)

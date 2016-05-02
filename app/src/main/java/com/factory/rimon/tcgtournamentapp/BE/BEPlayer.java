@@ -3,7 +3,7 @@ package com.factory.rimon.tcgtournamentapp.BE;
 /**
  * Created by rimon on 4/29/2016.
  */
-public class Player
+public class BEPlayer
 {
         //Testing class, replaved by account system later
         String firstName;
@@ -11,7 +11,7 @@ public class Player
         String DCI;
         String email;
 
-        public Player(String firstName, String lastName, String DCI, String email)
+        public BEPlayer(String firstName, String lastName, String DCI, String email)
         {
             this.firstName = firstName;
             this.lastName = lastName;
