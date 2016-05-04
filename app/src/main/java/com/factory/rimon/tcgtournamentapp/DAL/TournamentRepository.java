@@ -29,71 +29,37 @@ public class TournamentRepository {
         tournaments = new ArrayList<BETournament>();
     }
 
-    /*public void loadPage(int limit, int page){
+    public ArrayList<BETournament> loadPage(int limit, int page){
         try{
             String result = getContent(URL + "?limit=" + limit + "&page=" + page);
-            if(result == null) return;
+            if (result == null)
+            {
+                Log.d(TAG, "Nothing returned...");
+                return null;
+            }
 
             JSONObject object = new JSONObject(result);
             JSONArray array = object.getJSONArray("docs");
 
+            ArrayList<BETournament> myList = new ArrayList<>();
             for(int i = 0; i < array.length(); i++){
-                //JSONObject o = array.getJSONObject(i);
+                JSONObject o = array.getJSONObject(i);
 
-                //Get info here
-
-                BETournament t = new BETournament("name", "date", "format", "edition");
-                tournaments.add(t);
+                BETournament t = new BETournament(o.getString("title"), o.getString("date"), o.getString("format"), o.getString("edition"));
+                myList.add(t);
             }
+            Log.d("Repository:", "amount in array" + tournaments.size());
+            return myList;
         }
         catch(JSONException e) {
             Log.e(TAG, "There was an error parsing the JSON", e);
         }catch(Exception e){
             Log.d(TAG, "General exception in loadPage " + e.getMessage());
         }
-    }*/
-
-    public ArrayList<BETournament> getAll(){return tournaments;}
-
-    public ArrayList<BETournament> getTournaments(/*int idx*/)
-    {
-        try {
-            //String url = URL + "?" + "limit=" + m_pageSize + "&page=" + idx;
-            Log.d(TAG, "Calling " + URL);
-            String result = getContent(URL);
-
-            if (result == null)
-            {
-                Log.d(TAG, "Error - No results found.");
-                return null;
-            }
-
-
-            JSONObject jsonMainObject = new JSONObject(result);
-            JSONArray array = jsonMainObject.getJSONArray("docs");
-
-            ArrayList<BETournament> res = new ArrayList<>();
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject d = array.getJSONObject(i);
-                String name = d.getString("name");
-                String date = d.getString("date");
-                String format = d.getString("");
-                String edition = d.getString("edition");
-
-                BETournament s = new BETournament(name, date, format, edition);
-                res.add(s);
-            }
-
-            return res;
-
-        } catch (JSONException e) {
-            Log.e(TAG,
-                    "There was an error parsing the JSON", e);
-        } catch (Exception e)
-        {  Log.d(TAG, "General exception in loadAll " + e.getMessage());
-        }
         return null;
     }
+
+    public ArrayList<BETournament> getAll(){return tournaments;}
 
     /**
      * Get the content of the url as a string. Based on using a scanner.
