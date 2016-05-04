@@ -24,19 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    TextView txtName;
-    TextView txtDate;
-    TextView txtFormat;
-    TextView txtEdition;
-
     ListView lvTournaments;
 
-    ArrayList<BETournament> tournaments;
-    ArrayList<BETournament> testList;
-
-    TournamentRepository tr;
-    TournamentAdapter ta;
+    TournamentRepository tRepo;
+    TournamentAdapter tAdapter;
 
     int nextPage = 1;
     boolean loading = false;
@@ -44,30 +35,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-        lvTournaments = (ListView) findViewById(R.id.listView);
 
-        /*testList = new ArrayList<>();
-        BETournament t1 = new BETournament("Name", "dATE", "FORMAT", "EDITION");
-        BETournament t2 = new BETournament("Name1", "dATE", "FORMAT", "EDITION");
-        testList.add(t1);
-        testList.add(t2);
-        Log.d("TEST", "" + testList.size());*/
+        lvTournaments = (ListView) findViewById(R.id.lvTournaments);
 
-        tr = new TournamentRepository();
-
-        tournaments = tr.getAll();
-
-        ta = new TournamentAdapter(this);
-        //ta.addAll(testList);
-
-        lvTournaments.setAdapter(ta);
+        tAdapter = new TournamentAdapter(this);
+        tRepo = new TournamentRepository();
+        lvTournaments.setAdapter(tAdapter);
 
         lvTournaments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                BETournament tournament = ta.getItem(position);
+                BETournament tournament = tAdapter.getItem(position);
 
                 Intent intent = new Intent(getApplicationContext(), TournamentDetails.class);
 
@@ -111,17 +90,21 @@ public class MainActivity extends AppCompatActivity {
                 LayoutInflater li = (LayoutInflater) getContext().getSystemService(
                         Context.LAYOUT_INFLATER_SERVICE);
                 v = li.inflate(R.layout.activity_row, null);
-                txtName = (TextView) v.findViewById(R.id.txtName);
-                txtDate = (TextView) v.findViewById(R.id.txtDate);
-                txtEdition = (TextView) v.findViewById(R.id.txtEdition);
-                txtFormat = (TextView) v.findViewById(R.id.txtFormat);
             }
-
             BETournament t = getItem(pos);
-                txtName.setText("" + t.getTitle());
-                txtDate.setText("" + t.getDate());
-                txtFormat.setText("" + t.getFormat());
-                txtName.setText("" + t.getEdition());
+
+            TextView txtId = (TextView) v.findViewById(R.id.txtId);
+            TextView txtName = (TextView) v.findViewById(R.id.txtName);
+            TextView txtDate = (TextView) v.findViewById(R.id.txtDate);
+            //TextView txtEdition = (TextView) v.findViewById(R.id.txtEdition);
+            TextView txtFormat = (TextView) v.findViewById(R.id.txtFormat);
+
+            txtId.setText("" + t.getId());
+            txtName.setText("" + t.getTitle());
+            txtDate.setText("" + t.getDate());
+            //txtEdition.setText("" + t.getEdition());
+            txtFormat.setText("" + t.getFormat());
+
             return v;
         }
     }
@@ -129,12 +112,12 @@ public class MainActivity extends AppCompatActivity {
     class LoadDataTask extends AsyncTask<Integer, Void, List<BETournament>> {
         @Override
         protected List<BETournament> doInBackground(Integer... page) {
-            return tr.loadPage(5, page[0]);
+            return tRepo.loadPage(page[0]);
         }
 
         @Override
         protected void onPostExecute(List<BETournament> beTournaments) {
-            ta.addAll(beTournaments);
+            tAdapter.addAll(beTournaments);
             Log.d("MainActivity", "amount in array:"+ beTournaments.size());
             loading = false;
         }

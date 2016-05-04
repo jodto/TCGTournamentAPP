@@ -8,10 +8,11 @@ import java.util.ArrayList;
  */
 public class BETournament implements Serializable{
 
+    String id;
     String title;
     String date;
     String format;
-    String edition;
+    /*String edition;
     String rel;
     String location;
     String entryTime;
@@ -19,13 +20,12 @@ public class BETournament implements Serializable{
     String price;
     String info;
     ArrayList<BEPlayer> players;
-    Boolean active;
+    Boolean active;*/
 
-    public BETournament(String title,
+    public BETournament(String id, String title,
                         String date,
-                        String format,
-                        String edition/*,
-            String rel,
+                        String format
+            /*String rel,
             String location,
             String entryTime,
             String startTime,
@@ -34,11 +34,12 @@ public class BETournament implements Serializable{
             ArrayList<Player> players,
             Boolean active*/)
     {
+        this.id = id;
         this.title = title;
         this.date = date;
         this.format = format;
-        this.edition = edition;
-        /*this.rel = rel;
+        /*this.edition = edition;
+        this.rel = rel;
         this.location = location;
         this.entryTime = entryTime;
         this.startTime = startTime;
@@ -48,6 +49,7 @@ public class BETournament implements Serializable{
         this.active = active;*/
     }
 
+    public String getId() {return id;}
 
     public String getTitle(){
         return title;
@@ -57,12 +59,17 @@ public class BETournament implements Serializable{
         return date;
     }
 
-    public String getEdition(){
+    /*public String getEdition(){
         return edition;
-    }
+    }*/
 
     public String getFormat(){
         return format;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
     }
 
     public void setTitle(String title)
@@ -80,9 +87,9 @@ public class BETournament implements Serializable{
         this.format = format;
     }
 
-    public void setEdition(String edition)
+   /* public void setEdition(String edition)
     {
         this.edition = edition;
-    }
+    }*/
 
 }

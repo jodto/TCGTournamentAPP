@@ -18,7 +18,6 @@ import java.util.Scanner;
  * Created by rimon on 4/29/2016.
  */
 public class TournamentRepository {
-
     private final String URL = "http://letest-rasnikat.rhcloud.com/api/tournaments";
 
     private final String TAG = "TOURNAMENT";
@@ -29,8 +28,9 @@ public class TournamentRepository {
         tournaments = new ArrayList<BETournament>();
     }
 
-    public ArrayList<BETournament> loadPage(int limit, int page){
+    public ArrayList<BETournament> loadPage(int page){
         try{
+            int limit = 5;
             String result = getContent(URL + "?limit=" + limit + "&page=" + page);
             if (result == null)
             {
@@ -45,10 +45,14 @@ public class TournamentRepository {
             for(int i = 0; i < array.length(); i++){
                 JSONObject o = array.getJSONObject(i);
 
-                BETournament t = new BETournament(o.getString("title"), o.getString("date"), o.getString("format"), o.getString("edition"));
+                BETournament t = new BETournament(
+                        o.getString("_id")
+                        , o.getString("title")
+                        , o.getString("location")
+                        , o.getString("date"));
                 myList.add(t);
             }
-            Log.d("Repository:", "amount in array" + tournaments.size());
+            Log.d("Repository:", "amount in array" + myList.size());
             return myList;
         }
         catch(JSONException e) {
@@ -87,6 +91,4 @@ public class TournamentRepository {
         }
         return sb.toString();
     }
-
-
 }
