@@ -93,17 +93,18 @@ public class MainActivity extends AppCompatActivity {
             }
             BETournament t = getItem(pos);
 
-            TextView txtId = (TextView) v.findViewById(R.id.txtId);
-            TextView txtName = (TextView) v.findViewById(R.id.txtName);
+            //TextView txtId = (TextView) v.findViewById(R.id.txtId);
+            TextView txtTitle = (TextView) v.findViewById(R.id.txtTitle);
             TextView txtDate = (TextView) v.findViewById(R.id.txtDate);
-            //TextView txtEdition = (TextView) v.findViewById(R.id.txtEdition);
-            TextView txtFormat = (TextView) v.findViewById(R.id.txtFormat);
+            TextView txtLocation = (TextView) v.findViewById(R.id.txtLocation);
+            //TextView txtFormat = (TextView) v.findViewById(R.id.txtFormat);
 
-            txtId.setText("" + t.getId());
-            txtName.setText("" + t.getTitle());
+            //txtId.setText("" + t.getId());
+            txtTitle.setText("" + t.getTitle());
             txtDate.setText("" + t.getDate());
+            txtLocation.setText("" + t.getLocation());
             //txtEdition.setText("" + t.getEdition());
-            txtFormat.setText("" + t.getFormat());
+            //txtFormat.setText("" + t.getFormat());
 
             return v;
         }

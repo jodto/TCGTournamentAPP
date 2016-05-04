@@ -11,85 +11,89 @@ public class BETournament implements Serializable{
     String id;
     String title;
     String date;
-    String format;
-    /*String edition;
-    String rel;
     String location;
+    String edition;
+    String rel;
+    String format;
     String entryTime;
     String startTime;
     String price;
     String info;
     ArrayList<BEPlayer> players;
-    Boolean active;*/
 
-    public BETournament(String id, String title,
-                        String date,
-                        String format
-            /*String rel,
-            String location,
-            String entryTime,
-            String startTime,
-            String price,
-            String info,
-            ArrayList<Player> players,
-            Boolean active*/)
+    public BETournament(String id
+            , String title
+            , String location
+            , String date
+            , String format
+            , String edition
+            , String rel
+            , String price
+            , String entryTime
+            , String startTime
+            , String info
+            , ArrayList<BEPlayer> players)
     {
         this.id = id;
         this.title = title;
         this.date = date;
-        this.format = format;
-        /*this.edition = edition;
-        this.rel = rel;
         this.location = location;
+        this.format = format;
+        this.edition = edition;
+        this.rel = rel;
+        this.location = format;
         this.entryTime = entryTime;
         this.startTime = startTime;
         this.price = price;
         this.info = info;
         this.players = players;
-        this.active = active;*/
     }
 
-    public String getId() {return id;}
+    public String getId() {
+        return id;
+    }
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
 
-    public String getDate(){
+    public String getDate() {
         return date;
     }
 
-    /*public String getEdition(){
-        return edition;
-    }*/
+    public String getLocation() {
+        return location;
+    }
 
-    public String getFormat(){
+    public String getEdition() {
+        return edition;
+    }
+
+    public String getRel() {
+        return rel;
+    }
+
+    public String getFormat() {
         return format;
     }
 
-    public void setId(String id)
-    {
-        this.id = id;
+    public String getEntryTime() {
+        return entryTime;
     }
 
-    public void setTitle(String title)
-    {
-        this.title = title;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setDate(String date)
-    {
-        this.date = date;
+    public String getPrice() {
+        return price;
     }
 
-    public void setFormat(String format)
-    {
-        this.format = format;
+    public String getInfo() {
+        return info;
     }
 
-   /* public void setEdition(String edition)
-    {
-        this.edition = edition;
-    }*/
-
+    public ArrayList<BEPlayer> getPlayers() {
+        return players;
+    }
 }

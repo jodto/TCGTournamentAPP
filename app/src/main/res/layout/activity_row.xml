@@ -1,47 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:weightSum="1">
+        android:layout_height="wrap_content"
+        android:layout_weight="0.41">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Tournament Title"
+            android:id="@+id/txtTitle" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="txtId"
-            android:id="@+id/txtId" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="txtName"
-            android:id="@+id/txtName" />
+            android:text="Location"
+            android:id="@+id/txtLocation" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="txtDate"
+            android:text="Date"
             android:id="@+id/txtDate" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="txtFormat"
-            android:id="@+id/txtFormat" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="txtEdition"
-            android:id="@+id/txtEdition" />
     </LinearLayout>
+
 </LinearLayout>

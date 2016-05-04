@@ -2,6 +2,7 @@ package com.factory.rimon.tcgtournamentapp.DAL;
 
 import android.util.Log;
 
+import com.factory.rimon.tcgtournamentapp.BE.BEPlayer;
 import com.factory.rimon.tcgtournamentapp.BE.BETournament;
 
 import org.json.JSONArray;
@@ -45,11 +46,60 @@ public class TournamentRepository {
             for(int i = 0; i < array.length(); i++){
                 JSONObject o = array.getJSONObject(i);
 
+                ArrayList<BEPlayer> players = new ArrayList<BEPlayer>();
+
+                if(o.has("players")){
+                    JSONArray jarr = (JSONArray) o.get("players");
+                    if(jarr != null){
+                        for(int j=0; j<jarr.length(); j++){
+                            JSONObject oPlayer = jarr.getJSONObject(j);
+
+                            BEPlayer p = new BEPlayer(
+                                    oPlayer.getString("firstName")
+                                    , oPlayer.getString("lastName")
+                                    , oPlayer.getString("DCI")
+                                    , oPlayer.getString("email")
+                            );
+
+                            players.add(p);
+                        }
+                    }
+                }
+
+                /*String format;
+                if(o.has("format")){
+                    format = o.getString("format");
+                }else{format = "invalid";}
+                String edition;
+                if(o.has("edition")){
+                    edition = o.getString("edition");
+                }else{edition = "invalid";}
+                String rel;
+                if(o.has("rel")){
+                    rel = o.getString("rel");
+                }else{rel = "invalid";}
+                String price;
+                if(o.has("price")){
+                    price = o.getString("price");
+                }else{price = "invalid";}*/
+
+                if(players == null){
+                    players.add(new BEPlayer("Nik", "Ras", "615", "nik@nikmail.nik"));
+                }
+
                 BETournament t = new BETournament(
                         o.getString("_id")
                         , o.getString("title")
                         , o.getString("location")
-                        , o.getString("date"));
+                        , o.getString("date")
+                        , o.getString("format")
+                        , o.getString("edition")
+                        , o.getString("rel")
+                        , o.getString("price")
+                        , o.getString("entryTime")
+                        , o.getString("startTime")
+                        , o.getString("info")
+                        , players);
                 myList.add(t);
             }
             Log.d("Repository:", "amount in array" + myList.size());
@@ -63,7 +113,7 @@ public class TournamentRepository {
         return null;
     }
 
-    public ArrayList<BETournament> getAll(){return tournaments;}
+   // public ArrayList<BETournament> getAll(){return tournaments;}
 
     /**
      * Get the content of the url as a string. Based on using a scanner.
