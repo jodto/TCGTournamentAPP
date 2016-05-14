@@ -96,4 +96,6 @@ public class BETournament implements Serializable{
     public ArrayList<BEPlayer> getPlayers() {
         return players;
     }
+
+
 }

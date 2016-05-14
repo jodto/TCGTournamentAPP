@@ -49,39 +49,22 @@ public class TournamentRepository {
                 ArrayList<BEPlayer> players = new ArrayList<BEPlayer>();
 
                 if(o.has("players")){
-                    JSONArray jarr = (JSONArray) o.get("players");
-                    if(jarr != null){
-                        for(int j=0; j<jarr.length(); j++){
-                            JSONObject oPlayer = jarr.getJSONObject(j);
+                                JSONArray jarr = (JSONArray) o.get("players");
+                                if(jarr != null){
+                                    for(int j=0; j<jarr.length(); j++){
+                                        JSONObject oPlayer = jarr.getJSONObject(j);
 
-                            BEPlayer p = new BEPlayer(
-                                    oPlayer.getString("firstName")
-                                    , oPlayer.getString("lastName")
-                                    , oPlayer.getString("DCI")
-                                    , oPlayer.getString("email")
-                            );
+                                        BEPlayer p = new BEPlayer(
+                                                oPlayer.getString("firstName")
+                                                , oPlayer.getString("lastName")
+                                                , oPlayer.getString("DCI")
+                                                , oPlayer.getString("email")
+                                        );
 
                             players.add(p);
                         }
                     }
                 }
-
-                /*String format;
-                if(o.has("format")){
-                    format = o.getString("format");
-                }else{format = "invalid";}
-                String edition;
-                if(o.has("edition")){
-                    edition = o.getString("edition");
-                }else{edition = "invalid";}
-                String rel;
-                if(o.has("rel")){
-                    rel = o.getString("rel");
-                }else{rel = "invalid";}
-                String price;
-                if(o.has("price")){
-                    price = o.getString("price");
-                }else{price = "invalid";}*/
 
                 if(players == null){
                     players.add(new BEPlayer("Nik", "Ras", "615", "nik@nikmail.nik"));

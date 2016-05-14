@@ -1,9 +1,11 @@
 package com.factory.rimon.tcgtournamentapp.BE;
 
+import java.io.Serializable;
+
 /**
  * Created by rimon on 4/29/2016.
  */
-public class BEPlayer
+public class BEPlayer implements Serializable
 {
         //Testing class, replaved by account system later
         String firstName;
@@ -19,7 +21,24 @@ public class BEPlayer
             this.email = email;
         }
 
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 
+    public String getFirstName() {
+        return firstName;
+    }
 
+    public String getLastName() {
+        return lastName;
+    }
 
+    public String getDCI() {
+        return DCI;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }
