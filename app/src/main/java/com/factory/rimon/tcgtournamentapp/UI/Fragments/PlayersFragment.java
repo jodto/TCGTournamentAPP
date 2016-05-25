@@ -1,7 +1,6 @@
 package com.factory.rimon.tcgtournamentapp.UI.Fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 
 import com.factory.rimon.tcgtournamentapp.BE.BEPlayer;
 import com.factory.rimon.tcgtournamentapp.BE.BETournament;
+import com.factory.rimon.tcgtournamentapp.DAL.TournamentRepository;
 import com.factory.rimon.tcgtournamentapp.R;
 
 /**
@@ -23,20 +23,21 @@ public class PlayersFragment extends Fragment {
 
 
     private static BETournament tournament;
+    static TournamentRepository tRepo;
 
-    public static PlayersFragment newInstance(Intent intent) {
+    public PlayersFragment() {
+        tRepo = new TournamentRepository();
+    }
+
+    public static PlayersFragment newInstance(BETournament pickedTournament) {
         PlayersFragment f = new PlayersFragment();
 
-        // Supply index input as an argument.
-
-        tournament =(BETournament) intent.getSerializableExtra("tournament");
+        tournament = pickedTournament;
 
         return f;
     }
 
-    public PlayersFragment() {
-        // Required empty public constructor
-    }
+
 
 
     @Override
@@ -55,15 +56,9 @@ public class PlayersFragment extends Fragment {
             TextView textView = new TextView(getContext());
             textView.setText("No players signed up yet");
             frameLayout.addView(textView);
-
         }
 
         return view;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 }
