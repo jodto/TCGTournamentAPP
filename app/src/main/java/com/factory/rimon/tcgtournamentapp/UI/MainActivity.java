@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(dao.isDatabaseEmpty() && !InternetHelper.isNetworkAvailable(this))
         {
-            Toast.makeText(getApplicationContext(), "NO INTERNET CONNECTION", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), " NO INTERNET CONNECTION", Toast.LENGTH_SHORT).show();
             lvTournaments.setVisibility(View.GONE);
             addRetryButton(this);
         }
